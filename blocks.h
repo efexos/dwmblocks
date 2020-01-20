@@ -8,6 +8,8 @@ const char *memory_stat = "/proc/meminfo";
 const char *wifi_opstate = "/sys/class/net/wlan0/operstate";
 const char *wifi_rssilink = "/proc/net/wireless";
 const char *wifi_rxbytes = "/sys/class/net/wlan0/statistics/rx_bytes";
+const char *lan_opstate = "/sys/class/net/enp1s0/operstate";
+const char *lan_speed = "/sys/class/net/enp1s0/speed";
 
 const char *brightness = "/sys/class/backlight/intel_backlight/brightness";
 const char *max_brightness = "/sys/class/backlight/intel_backlight/max_brightness";
