@@ -17,10 +17,10 @@ put,
 	# echo "dwmblocks &" >> ~/.xprofile
 
 OR do it manually by vim in '~/.xprofile' add:
-#################
-internetav &
-dwmblocks &
-################	
+	#################
+	internetav &
+	dwmblocks &
+	################	
 
 
 # Description (Read this there are few things that need setting up)
