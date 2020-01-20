@@ -66,14 +66,14 @@ const char *getstsmods(const char *fak, char *value)
 				char wifiState[4];
 				fscanf(file, "%s", wifiState);
 				fclose(file);
-				if (*(wifiState+0) != 'd'){
+				if (*(wifiState+0) != 'd') {
 					file = fopen("/tmp/internetav","r");
 					if (file != NULL)
 					{
 						int internetav;
 						fscanf(file, "%d", &internetav);
 						fclose(file);
-						if (internetav != 0){
+						if (internetav != 0) {
 							int wifirssi = 0;
 							int wifispeed = 0;
 							long double rxBytes = 0;
@@ -101,6 +101,31 @@ const char *getstsmods(const char *fak, char *value)
 				} else
 					sprintf(value+i, "%s ", "睊");
 			}	
+		break;
+		case '':	// Case LAN Info
+			file = fopen(lan_opstate, "r");
+			if (file != NULL) {
+				char lanopstate[4];
+				fscanf(file, "%s", lanopstate);
+				fclose(file);
+				if (*(lanopstate+0) != 'd') {
+					file = fopen("/tmp/internetav","r");
+					if (file != NULL) {
+						int internetav;
+						fscanf(file, "%d", &internetav);
+						fclose(file);
+						if (internetav != 0) {
+							sprintf(value+i, "%s ", "ﯲ");
+						} else {
+							sprintf(value+i, "%s ", "ﯳ");
+						}
+					} else {
+						sprintf(value+i, "%s ", "ﯳ");
+					}
+				} else {
+					sprintf(value+i, "%s ", "");
+				}
+			}
 		break;
 		case 'u':	// Case Updates Info
 			file = fopen("/tmp/updates","r");
