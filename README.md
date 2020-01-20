@@ -11,17 +11,17 @@ Modular status bar for dwm written in c.
 	# sudo rm /usr/local/dwmblocks
 	# sudo rm /usr/local/internetav
 
-In your init script i.e, .xinitrc or .xprofile
-put,
+In your .xinitrc or .xprofile:
+
 	# echo "internetav &" >> ~/.xprofile
 	# echo "dwmblocks &" >> ~/.xprofile
 
 OR do it manually by vim in '~/.xprofile' add:
+
 	#################
 	internetav &
 	dwmblocks &
 	################	
-
 
 # Description (Read this there are few things that need setting up)
 
