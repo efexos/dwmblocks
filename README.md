@@ -11,17 +11,17 @@ Modular status bar for dwm written in c.
 	# sudo rm /usr/local/dwmblocks
 	# sudo rm /usr/local/internetav
 
-In your init script i.e, .xinitrc or .xprofile
-put,
+In your .xinitrc or .xprofile:
+
 	# echo "internetav &" >> ~/.xprofile
 	# echo "dwmblocks &" >> ~/.xprofile
 
 OR do it manually by vim in '~/.xprofile' add:
-#################
-internetav &
-dwmblocks &
-################	
 
+	#################
+	internetav &
+	dwmblocks &
+	################	
 
 # Description (Read this there are few things that need setting up)
 
@@ -35,8 +35,8 @@ A simple example for adding date blocks would be,
 Scrpit(in "blocks.h"):
 
 	##########################################################################################
-	icon		isFunc		command											interval	signal
-	{ "$",		0,			"date | awk '{ print $1" "$2" "$3" "$4 }'",		0,			0	},
+	icon	isFunc	command						interval	signal
+	{ "$",	0,	"date | awk '{ print $1" "$2" "$3" "$4 }'",	0,		0 },
 	##########################################################################################
 
 C function(in "comp.c" and "blocks.h"):
@@ -52,8 +52,8 @@ C function(in "comp.c" and "blocks.h"):
 
 	then add in "blocks.h"
 	############################################################################################
-	icon		isFunc		command											interval	signal
-	{ "$",		1,			"d",											0,			0	},
+	icon		isFunc		command		interval	signal
+	{ "$",		1,		"d",		0,		0 },
 	############################################################################################
 
 	While adding a function remember the first letter in command is used to switch in every case
