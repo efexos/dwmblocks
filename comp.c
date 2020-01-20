@@ -102,7 +102,7 @@ const char *getstsmods(const char *fak, char *value)
 					sprintf(value+i, "%s ", "睊");
 			}	
 		break;
-		case '':	// Case LAN Info
+		case 'n':	// Case LAN Info
 			file = fopen(lan_opstate, "r");
 			if (file != NULL) {
 				char lanopstate[4];
