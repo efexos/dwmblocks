@@ -175,6 +175,12 @@ void termhandler(int signum)
 int main(int argc, char** argv)
 {
 	sprintf(wifi_opstate, "/sys/class/net/%s/operstate", network_wifi_name);
+	sprintf(wifi_rxbytes, "/sys/class/net/%s/statistics/rx_bytes", network_wifi_name);
+	sprintf(lan_opstate, "/sys/class/net/%s/operstate", network_lan_name);
+	sprintf(max_brightness, "/sys/class/backlight/%s/max_brightness", backlight_driver_name);
+	sprintf(brightness, "/sys/class/backlight/%s/brightness", backlight_driver_name);
+	sprintf(battery, "/sys/class/power_supply/%s/online", power_battery_name);
+	sprintf(adapter, "/sys/class/power_supply/%s/online", power_adapter_name);
 	for(int i = 0; i < argc; i++)
 	{	
 		if (!strcmp("-d",argv[i]))

@@ -1,20 +1,20 @@
+static char adapter[64];
+static char battery[64];
+static char cpu_temp[64];
+static char brightness[64];
+static char lan_opstate[64];
+static char wifi_opstate[64];
+static char wifi_rxbytes[64];
+static char max_brightness[64];
+static long double rxBytes;
+static long double rxBytes1;
+static long double rxBytesdiff;
 static long double workJiffies2;
 static long double workJiffies1;
 static long double totalJiffies2;
 static long double totalJiffies1;
-static long double totalJiffiesDiff;
 static long double workJiffiesDiff;
-static long double rxBytesdiff;
-static long double rxBytes1;
-static long double rxBytes;
-static char cpu_temp[64];
-static char wifi_opstate[64];
-static char wifi_rxbytes[64];
-static char lan_opstate[64];
-static char max_brightness[64];
-static char brightness[64];
-static char adapter[64];
-static char battery[64];
+static long double totalJiffiesDiff;
 
 const char *getstsmods(const char *fak, char *value)
 {
@@ -85,7 +85,6 @@ const char *getstsmods(const char *fak, char *value)
 						fclose(file);
 						if (internetav != 0) {
 							int wifispeed = 0;
-							sprintf(wifi_rxbytes, "/sys/class/net/%s/statistics/rx_bytes", network_wifi_name);
 							file = fopen(wifi_rxbytes,"r");
 			 				if (file != NULL) {
 			 					fscanf(file, "%Lf", &rxBytes);
@@ -106,7 +105,6 @@ const char *getstsmods(const char *fak, char *value)
 			}	
 		break;
 		case 'n':	// Case LAN Info
-			sprintf(lan_opstate, "/sys/class/net/%s/operstate", network_lan_name);
 			file = fopen(lan_opstate, "r");
 			if (file != NULL) {
 				char lanopstate[4];
@@ -194,8 +192,6 @@ const char *getstsmods(const char *fak, char *value)
 			}
 		break;
 		case 'x':	// Case X-Backlight
-			sprintf(max_brightness, "/sys/class/backlight/%s/max_brightness", backlight_driver_name);
-			sprintf(brightness, "/sys/class/backlight/%s/brightness", backlight_driver_name);
 			file = fopen(max_brightness, "r");
 			if (file != NULL) {
 				int light;
@@ -268,8 +264,6 @@ const char *getstsmods(const char *fak, char *value)
 			}
 		break;
 		case 'p':	// Case Battery/Adapter A.K.A. Power
-			sprintf(battery, "/sys/class/power_supply/%s/online", power_battery_name);
-			sprintf(adapter, "/sys/class/power_supply/%s/online", power_adapter_name);
 			file = fopen(battery, "r");
 			if (file != NULL) {
 				int online;
