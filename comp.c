@@ -6,7 +6,9 @@ static long double totalJiffiesDiff;
 static long double workJiffiesDiff;
 static long double rxBytesdiff;
 static long double rxBytes1;
-static const char *cpu_temp = "/sys/class/hwmon/"+hwmoncpu+"/temp1_input";
+static const char *cpu_temp = "/sys/class/hwmon/";
+strcat(cpu_temp, hwmoncpu);
+strcat(cputemp, "/temp1_input");
 
 const char *getstsmods(const char *fak, char *value)
 {
