@@ -1,7 +1,8 @@
 
 // Modify the given location of files as per your system
 const char *cpu_hwmon_name = "hwmon0";
-const char *wifi_wlan_name = "wlan0";
+const char *network_wifi_name = "wlan0";
+const char *network_lan_name = "enp1s0";
 const char *lan_opstate = "/sys/class/net/enp1s0/operstate";
 const char *lan_speed = "/sys/class/net/enp1s0/speed";
 
