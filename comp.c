@@ -10,6 +10,9 @@ static long double rxBytes;
 static char cpu_temp[64];
 static char wifi_opstate[64];
 static char wifi_rxbytes[64];
+static char lan_opstate[64];
+static char max_brightness[64];
+static char brightness[64];
 
 const char *getstsmods(const char *fak, char *value)
 {
@@ -102,6 +105,7 @@ const char *getstsmods(const char *fak, char *value)
 			}	
 		break;
 		case 'n':	// Case LAN Info
+			sprintf(lan_opstate, "/sys/class/net/%s/operstate", network_lan_name);
 			file = fopen(lan_opstate, "r");
 			if (file != NULL) {
 				char lanopstate[4];
@@ -189,6 +193,8 @@ const char *getstsmods(const char *fak, char *value)
 			}
 		break;
 		case 'x':	// Case X-Backlight
+			sprintf(max_brightness, "/sys/class/backlight/%s/max_brightness", backlight_driver_name);
+			sprintf(brightness, "/sys/class/backlight/%s/brightness", backlight_driver_name);
 			file = fopen(max_brightness, "r");
 			if (file != NULL) {
 				int light;

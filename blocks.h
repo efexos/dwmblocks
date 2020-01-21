@@ -3,12 +3,7 @@
 const char *cpu_hwmon_name = "hwmon0";
 const char *network_wifi_name = "wlan0";
 const char *network_lan_name = "enp1s0";
-const char *lan_opstate = "/sys/class/net/enp1s0/operstate";
-const char *lan_speed = "/sys/class/net/enp1s0/speed";
-
-const char *brightness = "/sys/class/backlight/intel_backlight/brightness";
-const char *max_brightness = "/sys/class/backlight/intel_backlight/max_brightness";
-
+const char *backlight_driver_name = "intel_backlight";
 const char *adp0 = "/sys/class/power_supply/ADP0/online";
 const char *bat0 = "/sys/class/power_supply/BAT0/online";
 
