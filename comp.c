@@ -80,7 +80,6 @@ const char *getstsmods(const char *fak, char *value)
 						fclose(file);
 						if (internetav != 0) {
 							int wifispeed = 0;
-							long int rxBytes;
 							sprintf(wifi_rxbytes, "/sys/class/net/%s/statistics/rx_bytes", network_wifi_name);
 							file = fopen(wifi_rxbytes,"r");
 			 				if (file != NULL) {
