@@ -6,6 +6,7 @@ static long double totalJiffiesDiff;
 static long double workJiffiesDiff;
 static long double rxBytesdiff;
 static long double rxBytes1;
+static long double rxBytes;
 static char cpu_temp[64];
 static char wifi_opstate[64];
 static char wifi_rxbytes[64];
