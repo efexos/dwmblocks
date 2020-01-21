@@ -64,7 +64,7 @@ Included Functions are all on the blocks.h edit them as your need. comment them 
 
 Setting up USB and ANDROID via udev.
 looping constantly in search for plugged devices can crank up cpu usage
-so udev rules are a better way just send a pkill singal command to update
+so udev rules are a better way just send a pkill to update
 dwmblocks i will give example for usb and android however you can do same 
 for any number of external devices you add or any block you wish to add.
 To add a udev rule first add a signal value to usb and android in "blocks.h"
