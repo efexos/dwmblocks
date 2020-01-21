@@ -40,7 +40,7 @@ const char *getstsmods(const char *fak, char *value)
 				workJiffies1 = workJiffies2;
 				totalJiffies1 = totalJiffies2;
 				cpuusage = (workJiffiesDiff / totalJiffiesDiff) * 100;
-				file = fopen("/sys/class/hwmon/hwmon0/temp1_input","r");
+				file = fopen(cpu_temp,"r");
 				if (file != NULL) {
 					int cputemp;
 					long double cpuTemp;
