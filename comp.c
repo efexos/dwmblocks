@@ -6,14 +6,14 @@ static long double totalJiffiesDiff;
 static long double workJiffiesDiff;
 static long double rxBytesdiff;
 static long double rxBytes1;
-static char *cpu_temp;
+static char cpu_temp[];
 
 const char *getstsmods(const char *fak, char *value)
 {
 	int i = strlen(value);
 	time_t t;
 	FILE * file;
-	//sprintf(cpu_temp, "/sys/class/hwmon/%s/temp1_input", hwmoncpu);
+	sprintf(cpu_temp, "/sys/class/hwmon/%s/temp1_input", hwmoncpu);
 	switch (fak[0]){
 		case 'm':	// Case Memory Info
 			file = fopen("/proc/meminfo","r");
