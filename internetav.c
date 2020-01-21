@@ -25,7 +25,7 @@ int main()
     		fprintf(file, "%d", 1);
     		fclose(file);
     	}
-    	usleep(3*1000*1000);
+    	usleep(5*1000*1000);
 	}
     return 0; 
 } 
