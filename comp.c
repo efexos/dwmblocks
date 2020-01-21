@@ -71,7 +71,6 @@ const char *getstsmods(const char *fak, char *value)
 			sprintf(value+i, "{%02d:%02d} ", time->tm_hour, time->tm_min);
 		break;
 		case 'w':	// Case WiFi Info
-			sprintf(wifi_opstate, "/sys/class/net/%s/operstate", network_wifi_name);
 			file = fopen(wifi_opstate,"r");
 			if (file != NULL) {
 				char wifiState[4];

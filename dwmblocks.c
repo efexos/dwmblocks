@@ -174,6 +174,7 @@ void termhandler(int signum)
 
 int main(int argc, char** argv)
 {
+	sprintf(wifi_opstate, "/sys/class/net/%s/operstate", network_wifi_name);
 	for(int i = 0; i < argc; i++)
 	{	
 		if (!strcmp("-d",argv[i]))
