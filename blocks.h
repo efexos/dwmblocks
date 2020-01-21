@@ -1,10 +1,6 @@
 
 // Modify the given location of files as per your system
-const char *cpu_stat = "/proc/stat";
-const char *cpu_temp = "/sys/class/hwmon/hwmon0/temp1_input";
-
-const char *memory_stat = "/proc/meminfo";
-
+const char *hwmoncpu = "hwmon0";
 const char *wifi_opstate = "/sys/class/net/wlan0/operstate";
 const char *wifi_rssilink = "/proc/net/wireless";
 const char *wifi_rxbytes = "/sys/class/net/wlan0/statistics/rx_bytes";

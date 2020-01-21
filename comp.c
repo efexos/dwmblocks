@@ -6,6 +6,7 @@ static long double totalJiffiesDiff;
 static long double workJiffiesDiff;
 static long double rxBytesdiff;
 static long double rxBytes1;
+static const char *cpu_temp = "/sys/class/hwmon/"+hwmoncpu+"/temp1_input";
 
 const char *getstsmods(const char *fak, char *value)
 {
@@ -14,7 +15,7 @@ const char *getstsmods(const char *fak, char *value)
 	FILE * file;
 	switch (fak[0]){
 		case 'm':	// Case Memory Info
-			file = fopen(memory_stat,"r");
+			file = fopen("/proc/meminfo","r");
 			if (file != NULL) {
 				int memusage;
 				long double memTotal, memFree;
@@ -25,7 +26,7 @@ const char *getstsmods(const char *fak, char *value)
 			}
 		break;
 		case 'c':	// Case Cpu Info
-			file = fopen(cpu_stat,"r");
+			file = fopen("/proc/stat","r");
 			if (file != NULL) {
 				int cpuusage;
 				long double cpuStat[7];
