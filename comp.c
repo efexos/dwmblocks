@@ -79,15 +79,6 @@ const char *getstsmods(const char *fak, char *value)
 						fscanf(file, "%d", &internetav);
 						fclose(file);
 						if (internetav != 0) {
-							int wifirssi = 0;
-							int wifispeed = 0;
-							long double rxBytes = 0;
-							file = fopen("/proc/net/wireless","r");
-							if (file != NULL) {
-								fscanf(file, "Inter-| sta-|   Quality        |   Discarded packets               | Missed | WE\n face | tus | link level noise |  nwid  crypt   frag  retry   misc | beacon | 22\n %s 0000   %d", &wifirssi);
-								fclose(file);
-							}
-							wifirssi = (100 * wifirssi) / 70;
 							sprintf(wifi_rxbytes, "/sys/class/net/%s/statistics/rx_bytes", network_wifi_name);
 							file = fopen(wifi_rxbytes,"r");
 			 				if (file != NULL) {
@@ -97,7 +88,7 @@ const char *getstsmods(const char *fak, char *value)
 			 				rxBytesdiff = rxBytes - rxBytes1;
 							rxBytes1 = rxBytes;
 							wifispeed = rxBytesdiff / 1024;
-							sprintf(value+i, "直{%d%(%dkB)} ", wifirssi, wifispeed);			
+							sprintf(value+i, "直{%dkB/s} ", wifispeed);			
 						} else {
 							sprintf(value+i, "%s ", "");	
 						}
