@@ -153,7 +153,7 @@ void statusloop()
 	{
 		getcmds(i);
 		writestatus();
-		usleep(999.9*1000);
+		usleep(999.8*1000);
 		i++;
 	}
 }
