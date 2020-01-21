@@ -13,6 +13,8 @@ static char wifi_rxbytes[64];
 static char lan_opstate[64];
 static char max_brightness[64];
 static char brightness[64];
+static char adapter[64];
+static char battery[64];
 
 const char *getstsmods(const char *fak, char *value)
 {
@@ -267,13 +269,15 @@ const char *getstsmods(const char *fak, char *value)
 			}
 		break;
 		case 'p':	// Case Battery/Adapter A.K.A. Power
-			file = fopen(bat0, "r");
+			sprintf(battery, "/sys/class/power_supply/%s/online", power_battery_name);
+			sprintf(adapter, "/sys/class/power_supply/%s/online", power_adapter_name);
+			file = fopen(battery, "r");
 			if (file != NULL) {
 				int online;
 				fscanf(file, "%d", &online);
 				fclose(file);
 			} else {
-				file = fopen(adp0, "r");
+				file = fopen(adapter, "r");
 				if (file != NULL) {
 					int online;
 					fscanf(file, "%d", &online);
