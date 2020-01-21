@@ -13,7 +13,7 @@ const char *getstsmods(const char *fak, char *value)
 	int i = strlen(value);
 	time_t t;
 	FILE * file;
-	sprintf(cpu_temp, "/sys/class/hwmon/%s/temp1_input", hwmoncpu);
+	//sprintf(cpu_temp, "/sys/class/hwmon/%s/temp1_input", hwmoncpu);
 	switch (fak[0]){
 		case 'm':	// Case Memory Info
 			file = fopen("/proc/meminfo","r");
@@ -40,7 +40,7 @@ const char *getstsmods(const char *fak, char *value)
 				workJiffies1 = workJiffies2;
 				totalJiffies1 = totalJiffies2;
 				cpuusage = (workJiffiesDiff / totalJiffiesDiff) * 100;
-				file = fopen(cpu_temp,"r");
+				file = fopen("/sys/class/hwmon/hwmon0/temp1_input","r");
 				if (file != NULL) {
 					int cputemp;
 					long double cpuTemp;
