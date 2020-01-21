@@ -6,7 +6,7 @@ static long double totalJiffiesDiff;
 static long double workJiffiesDiff;
 static long double rxBytesdiff;
 static long double rxBytes1;
-static char cpu_temp[];
+static char cpu_temp[100];
 
 const char *getstsmods(const char *fak, char *value)
 {
