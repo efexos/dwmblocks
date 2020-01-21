@@ -1,9 +1,7 @@
 
 // Modify the given location of files as per your system
-const char *hwmoncpu = "hwmon0";
-const char *wifi_opstate = "/sys/class/net/wlan0/operstate";
-const char *wifi_rssilink = "/proc/net/wireless";
-const char *wifi_rxbytes = "/sys/class/net/wlan0/statistics/rx_bytes";
+const char *cpu_hwmon_name = "hwmon0";
+const char *wifi_wlan_name = "wlan0";
 const char *lan_opstate = "/sys/class/net/enp1s0/operstate";
 const char *lan_speed = "/sys/class/net/enp1s0/speed";
 

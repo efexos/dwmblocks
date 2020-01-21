@@ -6,14 +6,15 @@ static long double totalJiffiesDiff;
 static long double workJiffiesDiff;
 static long double rxBytesdiff;
 static long double rxBytes1;
-static char cpu_temp[100];
+static char cpu_temp[64];
+static char wifi_opstate[64];
+static char wifi_rxbytes[64];
 
 const char *getstsmods(const char *fak, char *value)
 {
 	int i = strlen(value);
 	time_t t;
 	FILE * file;
-	sprintf(cpu_temp, "/sys/class/hwmon/%s/temp1_input", hwmoncpu);
 	switch (fak[0]){
 		case 'm':	// Case Memory Info
 			file = fopen("/proc/meminfo","r");
@@ -40,6 +41,7 @@ const char *getstsmods(const char *fak, char *value)
 				workJiffies1 = workJiffies2;
 				totalJiffies1 = totalJiffies2;
 				cpuusage = (workJiffiesDiff / totalJiffiesDiff) * 100;
+				sprintf(cpu_temp, "/sys/class/hwmon/%s/temp1_input", cpu_hwmon_name);
 				file = fopen(cpu_temp,"r");
 				if (file != NULL) {
 					int cputemp;
@@ -63,6 +65,7 @@ const char *getstsmods(const char *fak, char *value)
 			sprintf(value+i, "{%02d:%02d} ", time->tm_hour, time->tm_min);
 		break;
 		case 'w':	// Case WiFi Info
+			sprintf(wifi_opstate, "/sys/class/net/%s/operstate", wifi_wlan_name);
 			file = fopen(wifi_opstate,"r");
 			if (file != NULL) {
 				char wifiState[4];
@@ -79,12 +82,13 @@ const char *getstsmods(const char *fak, char *value)
 							int wifirssi = 0;
 							int wifispeed = 0;
 							long double rxBytes = 0;
-							file = fopen(wifi_rssilink,"r");
+							file = fopen("/proc/net/wireless","r");
 							if (file != NULL) {
 								fscanf(file, "Inter-| sta-|   Quality        |   Discarded packets               | Missed | WE\n face | tus | link level noise |  nwid  crypt   frag  retry   misc | beacon | 22\n wlan0: 0000   %d", &wifirssi);
 								fclose(file);
 							}
 							wifirssi = (100 * wifirssi) / 70;
+							sprintf(wifi_rxbytes, "/sys/class/net/%s/statistics/rx_bytes", wifi_wlan_name);
 							file = fopen(wifi_rxbytes,"r");
 			 				if (file != NULL) {
 			 					fscanf(file, "%Lf", &rxBytes);
