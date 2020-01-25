@@ -139,7 +139,8 @@ const char *getstsmods(const char *fak, char *value)
 					sprintf(value+i, "{%d} ", u);
 				else
 					value[0] = '\0';
-			}
+			} else 
+				value[0] = '\0';
 		break;
 		case 'a':	// Case Android Devices-Phones 
 			file = popen("mtp-detect 2>/dev/null | awk '/Model/' | wc -l", "r");
