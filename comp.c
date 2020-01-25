@@ -276,7 +276,7 @@ const char *getstsmods(const char *fak, char *value)
 					fscanf(file, "%d", &online);
 					fclose(file);
 					if (online != 0)
-						sprintf(value+i, "%s ", "ﳦ");
+						sprintf(value+i, "%s", "ﳦ");
 				}
 			}
 		break;
