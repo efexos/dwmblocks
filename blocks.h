@@ -22,7 +22,7 @@ static const Block blocks[] = {
 	{ "ﮮ",		1,		"updatestat",		0,			12 },	// u -> updates
 	{ "",		1,		"busb",			0,			14 },	// b -> usb / pen drives plugged
 	{ "",		1,		"android",		0,			15 },	// a -> android plugged
-	{ "",		1,		"transmission",		60,			0 },	// t -> torrent status transmission
+//	{ "",		1,		"transmission",		60,			0 },	// t -> torrent status transmission
 };
 
 //sets delimeter between status commands. NULL character ('\0') means no delimeter.
