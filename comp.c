@@ -187,8 +187,7 @@ const char *getstsmods(const char *fak, char *value)
 					}
 					pri[strlen(pri)-1] = '\0';
 					sprintf(value+i, "{%s} ", pri);
-				} else
-					value[0] = '\0';
+				}
 			}
 		break;
 		case 'x':	// Case X-Backlight
@@ -276,7 +275,7 @@ const char *getstsmods(const char *fak, char *value)
 					fscanf(file, "%d", &online);
 					fclose(file);
 					if (online != 0)
-						sprintf(value+i, "%s", "ﳦ");
+						sprintf(value+i, "%s ", "ﳦ");
 				}
 			}
 		break;
