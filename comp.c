@@ -180,9 +180,7 @@ const char *getstsmods(const char *fak, char *value)
             					else
                 					sprintf(value+i, "{%s} ", cm1);
         				}
-    				} else {
-					value[0] = '\0';
-				}
+    				}
     			} else {
 				value[0] = '\0';
 			}
