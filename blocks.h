@@ -20,7 +20,7 @@ static const Block blocks[] = {
 	{ "",		1,		"ltime",		1,			0 },	// l -> time
 	{ "",		1,		"power",		1,			0 },	// p ->	power / battery
 	{ "ﮮ",		1,		"updatestat",		0,			12 },	// u -> updates
-	{ "s",		1,		"busb",			0,			14 },	// b -> usb / pen drives plugged
+	{ "",		1,		"busb",			0,			14 },	// b -> usb / pen drives plugged
 	{ "",		1,		"android",		0,			15 },	// a -> android plugged
 	{ "",		1,		"transmission",		60,			0 },	// t -> torrent status transmission
 };
