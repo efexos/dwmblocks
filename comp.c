@@ -176,9 +176,9 @@ const char *getstsmods(const char *fak, char *value)
                 					fclose(file);
             					}
             					if (mountpoint[0] != '\0')
-                					sprintf(value+i, "{%s#} ", cm1);
+                					sprintf(value+i, "{%s#} ", cm1);
             					else
-                					sprintf(value+i, "{%s} ", cm1);
+                					sprintf(value+i, "{%s} ", cm1);
         				}
     				} else {
 					value[0] = '\0';
