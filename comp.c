@@ -178,9 +178,11 @@ const char *getstsmods(const char *fak, char *value)
             			if (mountpoint[0] != '\0')
                 			sprintf(value+i, "{%s#} ", cmd1);
             			else
-                			sprintf(value+i, "{%s}", cmd1);
+                			sprintf(value+i, "{%s} ", cmd1);
         			}
-    			}
+    			} else {
+					value[0] = '\0';
+				}
     		}
 		break;
 		case 't':	// Case transmission remote cli torrents
