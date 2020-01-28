@@ -93,16 +93,16 @@ const char *getstsmods(const char *fak, char *value)
 			 				rxBytesdiff = rxBytes - rxBytes1;
 							rxBytes1 = rxBytes;
 							wifispeed = rxBytesdiff / 1024;
-							sprintf(value+i, "直{%dkB/s} ", wifispeed);			
+							sprintf(value+i, "直{%dkB/s} ", wifispeed);
 						} else {
-							sprintf(value+i, "%s ", "");	
+							sprintf(value+i, "%s ", "");
 						}
 					} else {
 						sprintf(value+i, "%s ", "");
 					}
 				} else
 					sprintf(value+i, "%s ", "睊");
-			}	
+			}
 		break;
 		case 'n':	// Case LAN Info
 			file = fopen(lan_opstate, "r");
@@ -139,10 +139,10 @@ const char *getstsmods(const char *fak, char *value)
 					sprintf(value+i, "{%d} ", u);
 				else
 					value[0] = '\0';
-			} else 
+			} else
 				value[0] = '\0';
 		break;
-		case 'a':	// Case Android Devices-Phones 
+		case 'a':	// Case Android Devices-Phones
 			file = popen("mtp-detect 2>/dev/null | awk '/Model/' | wc -l", "r");
 			if (file != NULL) {
 				int devs = 0;
@@ -154,19 +154,36 @@ const char *getstsmods(const char *fak, char *value)
 					value[0] = '\0';
 			}
 		break;
-		case 'b':	// Case Usb Disk Drives 
+		case 'b':	// Case Usb Disk Drives
 			file = popen("lsblk -lo RM,TYPE | grep '1 disk' | wc -l", "r");
-			if (file != NULL) {
-				int devs = 0;
-				fscanf(file, "%d", &devs);
-				pclose(file);
-				if (devs != 0)
-					sprintf(value+i, "{%d} ", devs);
-				else
-					value[0] = '\0';
-			}
+    		if (file != NULL) {
+				int devs;
+				char cmd1[128], cmd2[128], mountpoint[128]="\0";
+        		fscanf(file, "%d", &devs);
+        		fclose(file);
+			    if (devs != 0) {
+        			for (int i = 1; i <= devs; i++) {
+            			sprintf(cmd1, "lsblk -lo RM,TYPE,NAME | grep '1 disk' | sed '%dq;d'", devs);
+            			file = popen(cmd1, "r");
+            			if (file != NULL) {
+                			fscanf(file, " 1 disk %s", cmd1);
+                			fclose(file);
+            			}
+            			sprintf(cmd2, "lsblk -lo RM,TYPE,MOUNTPOINT /dev/%s | grep '1 part'", cmd1);
+            			file = popen(cmd2, "r");
+            			if (file != NULL) {
+                			fscanf(file, " 1 part %s", mountpoint);
+                			fclose(file);
+            			}
+            			if (mountpoint[0] != '\0')
+                			sprintf(value+i, "{%s#} ", cmd1);
+            			else
+                			sprintf(value+i, "{%s}", cmd1);
+        			}
+    			}
+    		}
 		break;
-		case 't':	// Case transmission remote cli torrents 
+		case 't':	// Case transmission remote cli torrents
 			file = popen("transmission-remote -l | wc -l", "r");
 			if (file != NULL) {
 				int torrents = 0;
@@ -188,7 +205,7 @@ const char *getstsmods(const char *fak, char *value)
 					}
 					pri[strlen(pri)-1] = '\0';
 					sprintf(value+i, "{%s} ", pri);
-				} else 
+				} else
 					value[0] = '\0';
 			}
 		break;
@@ -225,7 +242,7 @@ const char *getstsmods(const char *fak, char *value)
 					sprintf(value+i, "%s ", "{█████}");
 			}
 		break;
-		case 'v':	// Case Volume	
+		case 'v':	// Case Volume
 			file = popen("pamixer --get-mute", "r");
 			if (file != NULL) {
 				char mute[5];
@@ -260,7 +277,7 @@ const char *getstsmods(const char *fak, char *value)
 						sprintf(value+i, "%s ", "{█████}");
 					else
 						sprintf(value+i, "ﱛ{█%d█} ", vol);
-				} else 
+				} else
 					sprintf(value+i, "%s ", "");
 			}
 		break;
