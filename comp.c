@@ -155,35 +155,7 @@ const char *getstsmods(const char *fak, char *value)
 			}
 		break;
 		case 'b':	// Case Usb Disk Drives
-			file = popen("lsblk -lo RM,TYPE | grep '1 disk' | wc -l", "r");
-    			if (file != NULL) {
-				int devs;
-				char cm1[128], cm2[128], mountpoint[128]="\0";
-        			fscanf(file, "%d", &devs);
-        			fclose(file);
-			    	if (devs != 0) {
-        				for (int i = 1; i <= devs; i++) {
-            					sprintf(cm1, "lsblk -lo RM,TYPE,NAME | grep '1 disk' | sed '%dq;d'", devs);
-						file = popen(cm1, "r");
-            					if (file != NULL) {
-                					fscanf(file, " 1 disk %s", cm1);
-                					fclose(file);
-            					}
-            					sprintf(cm2, "lsblk -lo RM,TYPE,MOUNTPOINT /dev/%s | grep '1 part'", cm1);
-            					file = popen(cm2, "r");
-            					if (file != NULL) {
-                					fscanf(file, " 1 part %s", mountpoint);
-                					fclose(file);
-            					}
-            					if (mountpoint[0] != '\0')
-                					sprintf(value+i, "{%s#} ", cm1);
-            					else
-                					sprintf(value+i, "{%s} ", cm1);
-        				}
-    				}
-    			} else {
-				value[0] = '\0';
-			}
+			sprintf(value+i, "{%s} ", "usb");
 		break;
 		case 't':	// Case transmission remote cli torrents
 			file = popen("transmission-remote -l | wc -l", "r");
