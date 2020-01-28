@@ -183,7 +183,9 @@ const char *getstsmods(const char *fak, char *value)
     				} else {
 					value[0] = '\0';
 				}
-    			}
+    			} else {
+				value[0] = '\0';
+			}
 		break;
 		case 't':	// Case transmission remote cli torrents
 			file = popen("transmission-remote -l | wc -l", "r");
