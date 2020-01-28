@@ -178,7 +178,7 @@ const char *getstsmods(const char *fak, char *value)
 						if (mp[0] != '\0')
 							sprintf(value+i, "{%s#} ", c1);
 						else							
-							sprintf(value+1, "{%s} ", c1);
+							sprintf(value+i, "{%s} ", c1);
 					}
 				}
 				else {
