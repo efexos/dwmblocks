@@ -1,3 +1,4 @@
+#include<time.h>
 static char adapter[64];
 static char battery[64];
 static char cpu_temp[64];
