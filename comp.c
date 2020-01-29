@@ -158,15 +158,15 @@ const char *getstsmods(const char *fak, char *value)
 			file = popen("lsblk -lo RM,TYPE | grep '1 disk' | wc -l", "r");
 			if (file != NULL) {
 				int devs = 0;
-				char c1[128], c2[128], mp[128]="\0";
+				char c1[128], c2[128], vendor[32], mp[128]="\0";
 				fscanf(file, "%d", &devs);
 				pclose(file);
 				if (devs != 0) {
 					for (int l = 1; l <= devs; l++) {
-						sprintf(c1, "lsblk -lo RM,TYPE,NAME | grep '1 disk' | sed '%dq;d'", l);
+						sprintf(c1, "lsblk -lo RM,TYPE,NAME,VENDOR | grep '1 disk' | sed '%dq;d'", l);
 						file = popen(c1, "r");
 						if (file != NULL) {
-							fscanf(file, " 1 disk %s", c1);
+							fscanf(file, " 1 disk %s %s", c1, vendor);
 							pclose(file);
 						}
 						sprintf(c2, "lsblk -lo RM,TYPE,MOUNTPOINT /dev/%s | grep '1 part'", c1);
@@ -176,9 +176,9 @@ const char *getstsmods(const char *fak, char *value)
 							pclose(file);
 						}
 						if (mp[0] != '\0')
-							sprintf(value+i, "{%s#} ", c1);
+							sprintf(value+i, "{%s#} ", vendor);
 						else							
-							sprintf(value+i, "{%s} ", c1);
+							sprintf(value+i, "{%s} ", vendor);
 					}
 				}
 				else {
