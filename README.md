@@ -5,8 +5,9 @@
 
 ### Note
 - Requires dwm tiling manager and archlinux.
-	> [Archlinux](https://www.archlinux.org/download/)
-	> [DWM](https://github.com/efexos/dwm)
+	> Download Archlinux ISO: [Archlinux](https://www.archlinux.org/download/)
+	
+	> Download DWM with important patches: [DWM](https://github.com/efexos/dwm)
 
 ### Regards
 > efexos
